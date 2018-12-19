@@ -9,3 +9,4 @@
     ~/.bashrc:
     ~/.profile:
     ~/.gitconfig:
+    ~/.dircolors: dircolors-solarized/dircolors.256dark
