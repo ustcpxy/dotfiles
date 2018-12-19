@@ -1,0 +1,4 @@
+* Dotfiles
+my dotfiles for debian desktop.
+
+And I uses [[https://github.com/anishathalye/dotbot][dotbot]] to bootstrap my dotfiles.
