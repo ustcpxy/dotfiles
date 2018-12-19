@@ -12,3 +12,4 @@
     ~/.dircolors: dircolors-solarized/dircolors.256dark
     ~/.xinitrc:
     ~/.Xresources:
+    ~/.config/awesome: config/awesome
