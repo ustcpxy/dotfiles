@@ -4,6 +4,10 @@
 #
 # global xinitrc file, used by all X sessions started by xinit (startx)
 
+export XMODIFIERS="@im=fcitx"
+export QT_IM_MODULE="fcitx"
+export GTK_IM_MODULE="fcitx"
+
 # fix emacs input issue
 export LC_CTYPE="zh_CN.UTF-8"
 

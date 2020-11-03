@@ -5,7 +5,7 @@
         protocol = https
 [user]
         name = Derek Pan
-        email = ustcpxy@gmail.com
+	email = dpan@advaoptical.com
 [credential]
 	helper = password-store
 [alias]
@@ -41,3 +41,5 @@
 encoding = utf-8
 [i18n]
 logoutputencoding = utf-8
+[pull]
+	rebase = true

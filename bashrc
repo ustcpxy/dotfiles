@@ -102,6 +102,8 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
+alias py='python3'
+
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
@@ -118,3 +120,33 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 . /usr/share/autojump/autojump.sh
+
+if [ "$TERM" == "xterm" ]; then
+	export TERM=xterm-256color
+	# change the double click behavior
+	#xterm -xrm "XTerm*charClass: 0-32:1,33-126:2,127-160:3,161-255:2"
+fi
+
+export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=lcd'
+
+function agr { ag -0 -l "$1" | xargs -0 sed -ri -e "s/$1/$2/g"; }
+export -f agr
+
+. ~/.config/ledger-completion.bash
+
+# added by Anaconda3 5.3.1 installer
+# >>> conda init >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$(CONDA_REPORT_ERRORS=false '/home/derek/anaconda3/bin/conda' shell.bash hook 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    \eval "$__conda_setup"
+else
+    if [ -f "/home/derek/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/derek/anaconda3/etc/profile.d/conda.sh"
+        CONDA_CHANGEPS1=false conda activate base
+    else
+        \export PATH="/home/derek/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda init <<<

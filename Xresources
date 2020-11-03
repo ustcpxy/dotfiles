@@ -66,3 +66,9 @@ xterm*faceNameDoublesize:WenQuanYi Zen Hei:antialias=true
 xterm*faceSize: 16
 
 XTerm*selectToClipboard: true
+
+!!XTerm*cutNewline: false
+!!XTerm*cutToBeginningOfLine: false
+!!XTerm*charClass: 33:48,35:48,37:48,42:48,45-47:48,64:48,95:48,126:48
+!
+xterm*charClass: 0-32:1,33-126:2,127-160:3,161-255:2

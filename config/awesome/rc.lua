@@ -45,6 +45,8 @@ end
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init(awful.util.get_themes_dir() .. "default/theme.lua")
+beautiful.font = 'sans 12'
+-- theme.font = 'sans 16'
 
 -- This is used later as the default terminal and editor to run.
 terminal = "x-terminal-emulator"
@@ -54,6 +56,9 @@ query_dict_cmd = terminal .. " -g 40x25 -e sdcv"
 search_cmd = terminal .. " -g 40x25 -e mysearch"
 reboot_cmd = terminal .. " -g 40x25 -e sudo reboot"
 shutdown_cmd = terminal .. " -g 40x25 -e sudo shutdown"
+org_capture_cmd = terminal .. " -g 40x25 -e org-capture"
+org_agenda_cmd = terminal .. " -g 40x25 -e org-agenda"
+org_roam_capture_cmd = terminal .. " -g 40x25 -e org-roam-capture"
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
@@ -355,6 +360,15 @@ globalkeys = awful.util.table.join(
     -- query dict
     awful.key({ modkey }, "q", function() awful.util.spawn(query_dict_cmd) end),
 
+    -- open org-capture 
+    awful.key({ modkey }, "F9", function() awful.util.spawn(org_capture_cmd) end),
+
+    -- open org-capture 
+    awful.key({ modkey }, "F12", function() awful.util.spawn(org_agenda_cmd) end),
+
+    -- open org-capture 
+    awful.key({ modkey }, "o", function() awful.util.spawn(org_roam_capture_cmd) end),
+
     -- reboot
     awful.key({ modkey, "Control" }, "Delete", function() awful.util.spawn(reboot_cmd) end),
 
@@ -509,10 +523,11 @@ awful.rules.rules = {
     { rule = { class = "Firefox" },
       properties = { screen = 1, tag = "1" } },
     { rule = { class = "Waterfox" },
-      properties = { screen = 1, tag = "1" } },
+--      properties = { screen = 1, tag = "1"} },
+      properties = { screen = 1, tag = "1", switchtotag = true } },
     -- Set Emacs to always map on tag named "2" on screen 1.
-    { rule = { class = "Emacs" },
-      properties = { screen = 1, tag = "2" } },
+    --{ rule = { class = "Emacs" },
+     -- properties = { screen = 1, tag = "2" } },
 }
 -- }}}
 
@@ -610,6 +625,20 @@ local function processwalker()
     return coroutine.wrap(yieldprocess)
 end
 
+local function spawn_here(cmd)
+    awful.util.spawn(cmd, {
+        tag = mouse.screen.selected_tag,
+    })
+end
+
+client.connect_signal("request::activate", function(c)
+    if c.class == "Waterfox" then
+        c.first_tag:view_only()
+        c.minimized = false
+        client.focus = c
+    end
+end)
+
 local function run_once(process, cmd)
    assert(type(process) == "string")
    local regex_killer = {
@@ -633,3 +662,4 @@ run_once("workrave")
 -- Use the second argument, if the programm you wanna start, 
 -- differs from the what you want to search.
 -- run_once("redshift", "nice -n19 redshift -l 51:14 -t 5700:4500")
+
