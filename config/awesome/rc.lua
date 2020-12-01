@@ -59,6 +59,7 @@ shutdown_cmd = terminal .. " -g 40x25 -e sudo shutdown"
 org_capture_cmd = terminal .. " -g 40x25 -e org-capture"
 org_agenda_cmd = terminal .. " -g 40x25 -e org-agenda"
 org_roam_capture_cmd = terminal .. " -g 40x25 -e org-roam-capture"
+org_roam_daily_capture_cmd = terminal .. " -g 40x25 -e org-roam-daily-capture"
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
@@ -363,11 +364,14 @@ globalkeys = awful.util.table.join(
     -- open org-capture 
     awful.key({ modkey }, "F9", function() awful.util.spawn(org_capture_cmd) end),
 
-    -- open org-capture 
+    -- open org-agenda 
     awful.key({ modkey }, "F12", function() awful.util.spawn(org_agenda_cmd) end),
 
-    -- open org-capture 
+    -- open org-roam-capture 
     awful.key({ modkey }, "o", function() awful.util.spawn(org_roam_capture_cmd) end),
+
+    -- open org-roam-daily-capture 
+    awful.key({ modkey }, "i", function() awful.util.spawn(org_roam_daily-capture_cmd) end),
 
     -- reboot
     awful.key({ modkey, "Control" }, "Delete", function() awful.util.spawn(reboot_cmd) end),
